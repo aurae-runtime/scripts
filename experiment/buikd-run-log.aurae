@@ -1,0 +1,77 @@
+#!/bin/aurae
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *\
+ *             Apache 2.0 License Copyright © DATE The Aurae Authors          *
+ *                                                                            *
+ *                ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓              *
+ *                ┃   █████╗ ██╗   ██╗██████╗  █████╗ ███████╗ ┃              *
+ *                ┃  ██╔══██╗██║   ██║██╔══██╗██╔══██╗██╔════╝ ┃              *
+ *                ┃  ███████║██║   ██║██████╔╝███████║█████╗   ┃              *
+ *                ┃  ██╔══██║██║   ██║██╔══██╗██╔══██║██╔══╝   ┃              *
+ *                ┃  ██║  ██║╚██████╔╝██║  ██║██║  ██║███████╗ ┃              *
+ *                ┃  ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ ┃              *
+ *                ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛              *
+ *                                                                            *
+ *                         Distributed Systems Runtime                        *
+ *                                                                            *
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *
+ *                                                                            *
+ *   Licensed under the Apache License, Version 2.0 (the "License");          *
+ *   you may not use this file except in compliance with the License.         *
+ *   You may obtain a copy of the License at                                  *
+ *                                                                            *
+ *       http://www.apache.org/licenses/LICENSE-2.0                           *
+ *                                                                            *
+ *   Unless required by applicable law or agreed to in writing, software      *
+ *   distributed under the License is distributed on an "AS IS" BASIS,        *
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
+ *   See the License for the specific language governing permissions and      *
+ *   limitations under the License.                                           *                                                                             *
+ *                                                                            *
+\* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+print("");
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+print("");
+print(" [Aurae] Distributed Systems Runtime. By Kris Nóva <kris@nivenly.com>  ");
+print("");
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+print("");
+
+
+// Create a new "image" object
+let myImage = #{
+    name: "hack",
+    base: "scratch",
+    port: 80,
+}
+
+// Imagine an "image" subsystem in the standard library
+image.volume(myImage, "/host/path", "/inside/path");
+image.volume(myImage, "/host/another", "/inside/another");
+image.env(myImage, "key", "value");
+image.build(myImage);
+image.push(myImage, "krisnova/hack:latest");
+
+
+// Now create a new "app" object
+let myApp = #{
+    name: "oops",
+    image: "krisnova/hack:latest",
+};
+
+myApp.name = "myApp"; // Values are mutable
+
+// Imagine a "runtime" subsystem in the standard library that can just run. Right now.
+runtime.run(myApp, "myApp");
+
+// Imagine a "schedule" subsystem in the standard library that is more like kube and systemd.
+schedule.lax(myApp, "laxApp"); // Lax is "relaxed" which is like a deployment. Just schedule wherever makes sense
+schedule.pin(myApp, "pinApp"); // Pin is "pinned" which is like a systemd unit. Pin with given criteria
+
+// Imagine a "status" subsystem in the standard library.
+status.runtime("myApp").json();
+status.schedule("laxApp").json();
+status.schedule("pinApp").json();
+
+// Imagine a "logs" subsystem in the standard library.
+logs.runtime("myApp");
+
