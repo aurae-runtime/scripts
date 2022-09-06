@@ -1,4 +1,4 @@
-# Expirement 
+# Experiment 
 
 Kicking the tires on some possible use cases for Aurae.
 
