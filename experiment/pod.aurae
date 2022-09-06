@@ -36,17 +36,36 @@ print("");
 print("-----------------------------------------------------------------------");
 print("");
 
+// Initialize aurae
 let aurae = connect();
+
+// Load the runtime subsystem
 let runtime = aurae.runtime();
 
+// Load the schedule subsystem
+let schedule = aurae.schedule();
+
+// Define a pod in a safe and convenient syntax
 mypod = pod("nginx");
 mypod.label("key", "value");
 mypod.expose(8080);
 mypod.expose(8081);
-mypod.env("USERNAME", aurae.secret("nova_username"));
+mypod.env("USERNAME", "nova");
 mypod.env("PASSWORD", aurae.secret("nova_password"));
+mypod.env("VERBOSE", false);
 
+// Run the pod right now
 runtime.run(mypod);
+
+// Schedule the pod using conventional cron syntax
+schedule.cron(mypod, "0 0-5 14 * * ?");
+
+// Schedule the pod "relaxed" or wherever the system can find room
+schedule.lax(mypod);
+
+// Schedule to pod "pinned" to the node alice like a systemd unit
+schedule.pin(mypod, "alice");
+
 
 
 
