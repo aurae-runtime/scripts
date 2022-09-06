@@ -1,4 +1,4 @@
-#!/bin/aurae
+#!/usr/bin/env aurae
 /* -------------------------------------------------------------------------- *\
  *             Apache 2.0 License Copyright © 2022 The Aurae Authors          *
  *                                                                            *
@@ -36,44 +36,20 @@ print("");
 print("-----------------------------------------------------------------------");
 print("");
 
+let aurae = connect();
+let runtime = aurae.runtime();
 
-// Create a new "image" object
-let myImage = #{
-    name: "hack",
-    base: "scratch",
-    port: 80,
-}
+mypod = pod("nginx");
+mypod.label("key", "value");
+mypod.expose(8080);
+mypod.expose(8081);
+mypod.env("USERNAME", aurae.secret("nova_username"));
+mypod.env("PASSWORD", aurae.secret("nova_password"));
 
-// Imagine an "image" subsystem in the standard library
-image.volume(myImage, "/host/path", "/inside/path");
-image.volume(myImage, "/host/another", "/inside/another");
-image.env(myImage, "key", "value");
-image.build(myImage);
-image.push(myImage, "krisnova/hack:latest");
+runtime.run(mypod);
 
 
-// Now create a new "app" object
-let myApp = #{
-    name: "oops",
-    image: "krisnova/hack:latest",
-};
 
-myApp.name = "myApp"; // Values are mutable
-
-// Imagine a "runtime" subsystem in the standard library that can just run. Right now.
-runtime.run(myApp, "myApp");
-
-// Imagine a "schedule" subsystem in the standard library that is more like kube and systemd.
-schedule.lax(myApp, "laxApp"); // Lax is "relaxed" which is like a deployment. Just schedule wherever makes sense
-schedule.pin(myApp, "pinApp"); // Pin is "pinned" which is like a systemd unit. Pin with given criteria
-
-// Imagine a "status" subsystem in the standard library.
-status.runtime("myApp").json();
-status.schedule("laxApp").json();
-status.schedule("pinApp").json();
-
-// Imagine a "logs" subsystem in the standard library.
-logs.runtime("myApp");
 
 
 
