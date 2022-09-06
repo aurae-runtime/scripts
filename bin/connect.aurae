@@ -28,17 +28,13 @@
  *   limitations under the License.                                           *
  *                                                                            *
 \* -------------------------------------------------------------------------- */
-print("");
-print("-----------------------------------------------------------------------");
-print("");
-print(" [Aurae] Distributed Systems Runtime. By Kris Nóva <kris@nivenly.com>  ");
-print("");
-print("-----------------------------------------------------------------------");
-print("");
+
+about();
 
 let aurae = connect();
 let runtime = aurae.runtime();
 let observe = aurae.observe();
+
 
 // Expose runtime abstractions
 //
