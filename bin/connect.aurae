@@ -1,4 +1,4 @@
-#!/bin/aurae
+#!/usr/bin/env aurae
 /* -------------------------------------------------------------------------- *\
  *             Apache 2.0 License Copyright © 2022 The Aurae Authors          *
  *                                                                            *
