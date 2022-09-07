@@ -29,36 +29,9 @@
  *                                                                            *
 \* -------------------------------------------------------------------------- */
 
-about();
 
 let aurae = connect();
-let runtime = aurae.runtime();
-let observe = aurae.observe();
-
-
-// Expose runtime abstractions
-//
-// We have some options to consider:
-//
-// runtime.run("/bin/bash");
-// runtime.runProcess("/bin/bash");
-// runtime.runContainer("nginx:latest");
-// runtime.runSandbox("nginx:latest");
-// runtime.runMicroVM("nginx:latest");
-
-// Expose observe abstractions
-//
-// We have some options to consider:
-//
-// observe.status();
-// observe.pid(1);
-// observe.process_filter("systemd");
-// observe.container("nginx");
-// observe.container_filter("nova");
-
-
-
-
+aurae.info();
 
 
 
