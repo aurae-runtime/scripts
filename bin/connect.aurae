@@ -34,6 +34,11 @@ let aurae = connect();
 aurae.info();
 
 
+//let pod = aurae.runtime().pod("mypod");
+//pod.image("krisnova/hack:latest");
+//aurae.runtime().run(pod);
+//
+//
 
 
 
