@@ -32,6 +32,6 @@
 
 let aurae = connect();
 aurae.info();
-//let observe = aurae.observe();
-//observe.status();
+let observe = aurae.observe();
+observe.status();
 
