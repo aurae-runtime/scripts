@@ -29,14 +29,12 @@
  *                                                                            *
 \* -------------------------------------------------------------------------- */
 
-
-print("Aurae Connection Info:");
 let aurae = connect();
-let info = aurae.info();
+aurae.info();
 
-print("Aurae Status:");
 let observe = aurae.observe();
-let status = observe.status();
+observe.status();
+
 
 
 
