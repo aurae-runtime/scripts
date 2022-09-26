@@ -30,11 +30,9 @@
 \* -------------------------------------------------------------------------- */
 
 let aurae = connect();
-aurae.info();
+//aurae.info().raw();
+aurae.info().json();
 
 let observe = aurae.observe();
-observe.status();
-
-
-
-
+//observe.status().raw();
+observe.status().json();
