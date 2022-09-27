@@ -33,10 +33,17 @@ let aurae = connect();
 let observe = aurae.observe();
 let runtime = aurae.runtime();
 
-//aurae.info().raw();
 aurae.info().json();
-
-//observe.status().raw();
 observe.status().json();
 
+let x = exec();
+x.name     = "nova";
+x.exec     = "cat /etc/shadow";
+x.comment  = "This is an example executable that can be scheduled with Aurae";
+
+//runtime.register(x);
+runtime.start(x);
+//runtime.stop(x);
+//runtime.destroy(x);
+x.json();
 
