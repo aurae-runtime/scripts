@@ -42,8 +42,9 @@ x.exec     = "cat /etc/shadow";
 x.comment  = "This is an example executable that can be scheduled with Aurae";
 
 //runtime.register(x);
-runtime.start(x);
+let status = runtime.start(x);
 //runtime.stop(x);
 //runtime.destroy(x);
+status.json();
 x.json();
 
